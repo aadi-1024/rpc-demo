@@ -1,0 +1,29 @@
+services:
+  broker:
+    build:
+      dockerfile: broker/Dockerfile
+    ports:
+      - 8080:8080
+    restart: on-failure
+
+  cache:
+    build:
+      dockerfile: cache/Dockerfile
+    ports:
+      - 7070:7070
+    restart: on-failure
+
+
+  mailer:
+    build:
+      dockerfile: mailer/Dockerfile
+    restart: on-failure
+    ports:
+      - 6060:6060
+      - 1025:1025
+
+#  mailhog:
+#    image: mailhog
+#    ports:
+#      - 1025:1025
+#      - 8025:8025

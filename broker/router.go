@@ -7,7 +7,7 @@ func NewRouter() http.Handler {
 
 	mux.Handle("/send-mail", http.HandlerFunc(SendMail))
 	mux.Handle("/add-user", http.HandlerFunc(AddUser))
-	mux.Handle("/delete-user", http.HandlerFunc(GetAll))
+	mux.Handle("/delete-user", http.HandlerFunc(DeleteUser))
 
 	return mux
 }

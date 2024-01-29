@@ -11,14 +11,14 @@ var userStore *Store
 
 func main() {
 	userStore = &Store{
-		data: make(map[int]string),
+		data: make(map[string]string),
 	}
 	err := rpc.Register(&CacheRPC{})
 	if err != nil {
 		log.Println(err)
 	}
 	rpc.HandleHTTP()
-	l, err := net.Listen("tcp", "127.0.0.1:7070")
+	l, err := net.Listen("tcp", "0.0.0.0:7070")
 	if err != nil {
 		log.Println(err)
 	}

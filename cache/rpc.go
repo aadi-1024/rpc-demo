@@ -3,7 +3,7 @@ package main
 type CacheRPC struct{}
 
 type UserModel struct {
-	Id    int
+	Id    string
 	Email string
 }
 
@@ -13,7 +13,7 @@ func (r *CacheRPC) AddUser(user *UserModel, resp *string) error {
 	return nil
 }
 
-func (r *CacheRPC) DeleteUser(id int, resp *string) error {
+func (r *CacheRPC) DeleteUser(id string, resp *string) error {
 	err := userStore.DeleteUser(id)
 	if err != nil {
 		*resp = err.Error()
@@ -23,7 +23,7 @@ func (r *CacheRPC) DeleteUser(id int, resp *string) error {
 	return nil
 }
 
-func (r *CacheRPC) GetAll(_ int, resp *map[int]string) error {
+func (r *CacheRPC) GetAll(_ int, resp *[]string) error {
 	*resp = userStore.GetAll()
 	return nil
 }

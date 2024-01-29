@@ -3,14 +3,14 @@ package main
 import "errors"
 
 type Store struct {
-	data map[int]string
+	data map[string]string
 }
 
 func (s *Store) AddUser(model *UserModel) {
 	s.data[model.Id] = model.Email
 }
 
-func (s *Store) GetById(id int) (string, error) {
+func (s *Store) GetById(id string) (string, error) {
 	email, ok := s.data[id]
 	if !ok {
 		return "", errors.New("does not exist")
@@ -18,7 +18,7 @@ func (s *Store) GetById(id int) (string, error) {
 	return email, nil
 }
 
-func (s *Store) DeleteUser(id int) error {
+func (s *Store) DeleteUser(id string) error {
 	_, ok := s.data[id]
 	if !ok {
 		return errors.New("does not exist")
@@ -27,6 +27,10 @@ func (s *Store) DeleteUser(id int) error {
 	return nil
 }
 
-func (s *Store) GetAll() map[int]string {
-	return s.data
+func (s *Store) GetAll() []string {
+	x := make([]string, len(s.data))
+	for _, i := range s.data {
+		x = append(x, i)
+	}
+	return x
 }
